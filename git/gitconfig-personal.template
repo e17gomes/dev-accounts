@@ -1,0 +1,13 @@
+; Copiar para ~/.gitconfig-personal e preencher os placeholders.
+; Aplicado pelo includeIf do ~/.gitconfig aos repos da pasta pessoal.
+[user]
+	name = <Seu Nome>
+	; e-mail noreply do GitHub: Settings > Emails
+	email = <id>+<usuario-pessoal>@users.noreply.github.com
+
+; Diz ao credential helper QUAL conta usar, sem depender do `gh auth switch` (global).
+[credential "https://github.com"]
+	username = <usuario-pessoal>
+; O helper vazio zera os helpers globais; o seguinte pede ao gh o token da conta pessoal.
+	helper =
+	helper = "!f() { test \"$1\" = get && echo username=<usuario-pessoal> && echo \"password=$(gh auth token -u <usuario-pessoal>)\"; }; f"
